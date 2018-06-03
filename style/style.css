@@ -1,0 +1,50 @@
+.container-fluid {
+  background: linear-gradient(to top, pink, rgba(255,255,255,0));
+  min-height: 100vh;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 7vh);
+  justify-content: center;
+  grid-gap: 2vh;
+}
+
+.square {
+  border-width: 5px;
+  border-style: solid;
+  border-color: white;
+  background-color: white;
+}
+
+.btn {
+  background: #ffc0cb;
+  color: white;
+  border-style: solid;
+  border-color: white;
+  border-radius: 10%;
+}
+
+.btn:hover {
+  background: white;
+  color: #ffc0cb;
+  border-style: solid;
+  border-color: #ffc0cb;
+  border-radius: 10%;
+}
+
+#brand {
+  height: 80vh;
+}
+
+.timer {
+  border-style: dashed;
+  border-color: pink;
+}
+
+p {
+  font-family: Roboto;
+  color: pink;
+  font-size: 20px;
+}
