@@ -1,9 +1,9 @@
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(9, 7vh);
-  grid-template-rows: repeat(9, 7vh);
-  justify-content: stretch;
-  grid-gap: 2vh;
+  grid-template-columns: repeat(9, auto);
+  grid-template-rows: repeat(9, 8vh);
+  align-items: stretch;
+  grid-gap: 0.7vh;
 }
 
 .square {
@@ -11,4 +11,21 @@
   border-style: solid;
   border-color: white;
   background-color: white;
+}
+
+@media (max-width: 900px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(9, 6vh);
+    grid-template-rows: repeat(9, 6vh);
+    align-items: stretch;
+    grid-gap: 0.7vh;
+  }
+
+  .square {
+    border-width: 5px;
+    border-style: solid;
+    border-color: white;
+    background-color: white;
+  }
 }

@@ -37,9 +37,35 @@ p {
 #controlls {
   justify-content: space-between;
   max-height: 10vh;
-  max-width: 79vh;
+  max-width: 10.6fr;
 }
 
 #nums {
-  max-width: 79vh;
+  max-width: 10.6fr;
+  height: auto;
+}
+
+#nums .btn {
+  font-size: 30px;
+}
+
+@media (max-width: 900px) {
+  #brand {
+    height: 60vh;
+  }
+
+  #controlls {
+    justify-content: start;
+    max-height: 8vh;
+    max-width: 50vh;
+  }
+
+  #nums {
+    max-width: 50vh;
+    height: auto;
+  }
+
+  #nums .btn {
+    font-size: 15px;
+  }
 }

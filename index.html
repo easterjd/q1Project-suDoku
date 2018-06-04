@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
   <title>SuDoku</title>
 </head>
 
@@ -10,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" href="./style/style.css">
   <link rel="stylesheet" href="/style/grid.css">
+
 <body>
 
   <div class="container-fluid">
@@ -18,7 +20,7 @@
       <div class="col-3">
 
       </div>
-      <div id="controlls" class="col-6 d-flex justify-content-end">
+      <div id="controlls" class="col col-lg d-flex">
         <button type="button" class="btn btn-secondary ml-3">New</button>
         <button type="button" class="btn btn-secondary ml-3">Restart</button>
 
@@ -34,10 +36,10 @@
 
 
     <div class="row">
-      <div class="col-3 text-right">
+      <div class="col-3 d-flex justify-content-end">
         <img id="brand" src="./style/brand.png" alt="SuDOKU header">
       </div>
-      <div class="col-6">
+      <div class="col col-lg-6 col-md-6">
 
         <div id="grid" class="grid-container">
 
@@ -49,11 +51,11 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row d-flex flex-fill">
       <div class="col-3">
 
       </div>
-      <div id='nums' class="col-6 d-flex justify-content-around">
+      <div id='nums' class="col col-lg d-flex justify-content-around">
         <button type="button" class="btn btn-secondary">1</button>
         <button type="button" class="btn btn-secondary">2</button>
         <button type="button" class="btn btn-secondary">3</button>
