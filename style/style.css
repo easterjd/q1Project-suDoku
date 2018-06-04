@@ -36,6 +36,10 @@ p {
 
 #controlls {
   justify-content: space-between;
-  max-width: 80vh;
   max-height: 10vh;
+  max-width: 79vh;
+}
+
+#nums {
+  max-width: 79vh;
 }
