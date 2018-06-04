@@ -1,0 +1,14 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(9, 7vh);
+  grid-template-rows: repeat(9, 7vh);
+  justify-content: stretch;
+  grid-gap: 2vh;
+}
+
+.square {
+  border-width: 5px;
+  border-style: solid;
+  border-color: white;
+  background-color: white;
+}
