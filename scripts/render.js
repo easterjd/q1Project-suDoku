@@ -1,11 +1,16 @@
-const data = require('./data')
+let data = require('./data')
+let dataLS = JSON.parse(localStorage.getItem('data'))
 
 const render = function (container) {
+  console.log(data)
+  if (dataLS !== undefined) {
+    data = dataLS
+  }
   for (let groups in data) {
     const group = document.createElement('div')
     group.classList.add('d-flex')
     group.classList.add('flex-wrap')
-    group.classList.add('flex-fill')
+    group.classList.add('justify-content-between')
     group.classList.add(groups)
 
     let keys = Object.keys(data[groups])
@@ -24,7 +29,6 @@ const render = function (container) {
       group.appendChild(square)
     }
     container.appendChild(group)
-
   }
   // for (let i = 0; i < 81; i++) {
   //   const square = document.createElement('div')

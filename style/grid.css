@@ -3,6 +3,7 @@
   grid-template-columns: repeat(9, 8vh);
   grid-template-rows: repeat(9, 8vh);
   grid-gap: 5px;
+  grid-column-gap: 8px;
   grid-template-areas:
     /* "A1 A1 A1 A2 A2 A2 A3 A3 A3"
     "A1 A1 A1 A2 A2 A2 A3 A3 A3"
@@ -27,12 +28,11 @@
 .square {
   border-width: 2px;
   border-style: solid;
-  border-color: #ffffff;
+  border-color: white;
   background-color: white;
   color: #4B4B4B;
   width: 8vh;
   height: 8vh;
-  padding: 0;
 }
 
 .square p {
