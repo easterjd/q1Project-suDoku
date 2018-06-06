@@ -1,22 +1,28 @@
 let data = require('./data')
 let dataLS = JSON.parse(localStorage.getItem('data'))
+let puzzles = require('./puzzles')
+let puzzle = puzzles.puzzle
+const events = require('./events')
+const newEventListeners = events.newEventListeners
 
 const render = function (container) {
-  // console.log(data)
+  dataLS = JSON.parse(localStorage.getItem('data'))
+  console.log(data)
+  console.log(puzzle);
+  console.log(dataLS);
+
   if (dataLS !== null) {
-    data = dataLS
-  } else {
-    dataLS = data
+    if (dataLS.A !== null) {
+      if (dataLS.A[0] !== null) {
+        data = dataLS
+      }
+    }
   }
+  container.innerHTML = ''
   let keys = Array.from(Object.keys(data))
   for (let p = 0; p < keys.length; p++) {
     const key = keys[p]
-    // const group = document.createElement('div')
-    // group.classList.add('d-flex')
-    // group.classList.add('flex-wrap')
-    // group.classList.add('justify-content-between')
 
-    // let keys = Object.keys(data[groups])
     for (let i = 0; i < data[key].length; i++) {
       const value = data[key][i]
       const square = document.createElement('div')
@@ -30,18 +36,10 @@ const render = function (container) {
       para.textContent = value
       para.classList.add('m-0')
       square.appendChild(para)
-      // group.appendChild(square)
       container.appendChild(square)
     }
-
   }
-  // for (let i = 0; i < 81; i++) {
-  //   const square = document.createElement('div')
-  //   square.classList.add('square')
-  //   const para = document.createElement('p')
-  //   square.appendChild(para)
-  //   container.appendChild(square)
-  // }
+  newEventListeners()
 }
 
 module.exports = render
