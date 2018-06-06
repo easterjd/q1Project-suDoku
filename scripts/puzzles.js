@@ -1,6 +1,7 @@
 let data = require('./data')
 
 let puzzle = []
+let puzzleLS = JSON.parse(localStorage.getItem('puzzle'))
 let solve = []
 
 const stock1 = {
@@ -45,6 +46,7 @@ function setPuzzle (squares) {
   let chosen = chooser[Math.floor(Math.random() * 5)]
   puzzle = chosen.puzz.split('')
   solve = chosen.solve.split('')
+  localStorage.setItem('puzzle', JSON.stringify(puzzle))
   // for (let i = 0; i < squares.length; i++) {
   //   let square = squares[i]
   //   let para = square.children[0]
@@ -64,17 +66,15 @@ function setPuzzle (squares) {
 
 function resetPuzzle (squares) {
   const dataLS = JSON.parse(localStorage.getItem('data'))
+  let comp = []
   if (puzzle.length === 0) {
-    for (keys in dataLS) {
-      let row = dataLS.keys
-      puzzle.concat(row)
-    }
+    puzzle = puzzleLS
   }
-  for (let i = 0; i < squares.length; i++) {
-    let square = squares[i]
-    let para = square.children[0]
-    para.textContent = puzzle[i]
-  }
+  // for (let i = 0; i < squares.length; i++) {
+  //   let square = squares[i]
+  //   let para = square.children[0]
+  //   para.textContent = puzzle[i]
+  // }
   data.A = puzzle.slice(0, 9)
   data.B = puzzle.slice(9, 18)
   data.C = puzzle.slice(18, 27)
@@ -84,6 +84,7 @@ function resetPuzzle (squares) {
   data.G = puzzle.slice(54, 63)
   data.H = puzzle.slice(63, 72)
   data.I = puzzle.slice(72, 81)
+  localStorage.setItem('data', JSON.stringify(data))
 }
 
 module.exports = {

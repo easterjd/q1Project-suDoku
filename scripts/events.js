@@ -129,6 +129,7 @@ const newEventListeners = function () {
     event.preventDefault()
     resetPuzzle(squares)
     localStorage.setItem('data', JSON.stringify(data))
+    render(grid)
   })
 }
 
