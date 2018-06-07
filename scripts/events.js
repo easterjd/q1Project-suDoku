@@ -217,25 +217,24 @@ const newEventListeners = function () {
     render(grid)
   }))
 
-  document.addEventListener('keypress', (event) => {
-    let key = event.which
-    console.log(key)
-    if (key < 49 || key > 57) {
-      alert('Oops! You must type a number between 1-9!')
-    }
-    if (key >= 49 || key <= 57) {
-      dataLS = JSON.parse(localStorage.getItem('data'))
-      const col = selected.classList[5]
-      const index = col[3]
-      const row = selected.classList[4]
-      dataLS[row][index] = String.fromCharCode(key)
-      localStorage.setItem('data', JSON.stringify(dataLS))
-      const selPara = selected.children
-      selPara[0].textContent = String.fromCharCode(key)
-
-      render(grid)
-    }
-  })
+  // document.addEventListener('keypress', (event) => {
+  //   let key = event.which
+  //   console.log(key)
+  //   if (key < 49 || key > 57) {
+  //     alert('Oops! You must type a number between 1-9!')
+  //   } else if (key >= 49 || key <= 57) {
+  //     dataLS = JSON.parse(localStorage.getItem('data'))
+  //     const col = selected.classList[5]
+  //     const index = col[3]
+  //     const row = selected.classList[4]
+  //     dataLS[row][index] = String.fromCharCode(key)
+  //     localStorage.setItem('data', JSON.stringify(dataLS))
+  //     const selPara = selected.children
+  //     selPara[0].textContent = String.fromCharCode(key)
+  //
+  //     render(grid)
+  //   }
+  // })
 
   newButton.addEventListener('click', (event) => {
     localStorage.removeItem('data')
@@ -313,6 +312,26 @@ const newEventListeners = function () {
     $('#timer').html(timer.getTimeValues().toString());
   });
 }
+
+document.addEventListener('keypress', (event) => {
+  const render = require('./render')
+  let key = event.which
+  console.log(key)
+  if (key < 49 || key > 57) {
+    alert('Oops! You must type a number between 1-9!')
+  } else if (key >= 49 || key <= 57) {
+    dataLS = JSON.parse(localStorage.getItem('data'))
+    const col = selected.classList[5]
+    const index = col[3]
+    const row = selected.classList[4]
+    dataLS[row][index] = String.fromCharCode(key)
+    localStorage.setItem('data', JSON.stringify(dataLS))
+    const selPara = selected.children
+    selPara[0].textContent = String.fromCharCode(key)
+
+    render(grid)
+  }
+})
 
 module.exports = {
   newEventListeners,

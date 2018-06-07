@@ -769,25 +769,24 @@ const newEventListeners = function () {
     render(grid)
   }))
 
-  document.addEventListener('keypress', (event) => {
-    let key = event.which
-    console.log(key)
-    if (key < 49 || key > 57) {
-      alert('Oops! You must type a number between 1-9!')
-    }
-    if (key >= 49 || key <= 57) {
-      dataLS = JSON.parse(localStorage.getItem('data'))
-      const col = selected.classList[5]
-      const index = col[3]
-      const row = selected.classList[4]
-      dataLS[row][index] = String.fromCharCode(key)
-      localStorage.setItem('data', JSON.stringify(dataLS))
-      const selPara = selected.children
-      selPara[0].textContent = String.fromCharCode(key)
-
-      render(grid)
-    }
-  })
+  // document.addEventListener('keypress', (event) => {
+  //   let key = event.which
+  //   console.log(key)
+  //   if (key < 49 || key > 57) {
+  //     alert('Oops! You must type a number between 1-9!')
+  //   } else if (key >= 49 || key <= 57) {
+  //     dataLS = JSON.parse(localStorage.getItem('data'))
+  //     const col = selected.classList[5]
+  //     const index = col[3]
+  //     const row = selected.classList[4]
+  //     dataLS[row][index] = String.fromCharCode(key)
+  //     localStorage.setItem('data', JSON.stringify(dataLS))
+  //     const selPara = selected.children
+  //     selPara[0].textContent = String.fromCharCode(key)
+  //
+  //     render(grid)
+  //   }
+  // })
 
   newButton.addEventListener('click', (event) => {
     localStorage.removeItem('data')
@@ -866,6 +865,26 @@ const newEventListeners = function () {
   });
 }
 
+document.addEventListener('keypress', (event) => {
+  const render = require('./render')
+  let key = event.which
+  console.log(key)
+  if (key < 49 || key > 57) {
+    alert('Oops! You must type a number between 1-9!')
+  } else if (key >= 49 || key <= 57) {
+    dataLS = JSON.parse(localStorage.getItem('data'))
+    const col = selected.classList[5]
+    const index = col[3]
+    const row = selected.classList[4]
+    dataLS[row][index] = String.fromCharCode(key)
+    localStorage.setItem('data', JSON.stringify(dataLS))
+    const selPara = selected.children
+    selPara[0].textContent = String.fromCharCode(key)
+
+    render(grid)
+  }
+})
+
 module.exports = {
   newEventListeners,
   selected
@@ -873,27 +892,26 @@ module.exports = {
 
 },{"../node_modules/easytimer.js/dist/easytimer.min.js":1,"./data":3,"./puzzles":6,"./render":7}],5:[function(require,module,exports){
 const render = require('./render')
-
 const events = require('./events')
-const newEventListeners = events.newEventListeners
-let selected = events.selected
+// const newEventListeners = events.newEventListeners
+// let selected = events.selected
 
 const grid = document.querySelector('#grid')
 
 let puzzles = require('./puzzles')
-let setPuzzle = puzzles.setPuzzle
-let puzzle = puzzles.puzzle
-let resetPuzzle = puzzles.resetPuzzle
+// let setPuzzle = puzzles.setPuzzle
+// let puzzle = puzzles.puzzle
+// let resetPuzzle = puzzles.resetPuzzle
 
 let data = require('./data')
-let dataLS = JSON.parse(localStorage.getItem('data'))
+// let dataLS = JSON.parse(localStorage.getItem('data'))
 
-const squares = Array.from(document.querySelectorAll('.square'))
-const innerNum = Array.from(document.querySelectorAll('.square p'))
-const numButtons = Array.from(document.querySelectorAll('#nums .btn'))
-
-const newButton = document.querySelector('#new')
-const restartButton = document.querySelector('#restart')
+// const squares = Array.from(document.querySelectorAll('.square'))
+// const innerNum = Array.from(document.querySelectorAll('.square p'))
+// const numButtons = Array.from(document.querySelectorAll('#nums .btn'))
+//
+// const newButton = document.querySelector('#new')
+// const restartButton = document.querySelector('#restart')
 
 render(grid)
 
@@ -1009,9 +1027,9 @@ const modal = document.querySelector('#myModal')
 const render = function (container) {
   dataLS = JSON.parse(localStorage.getItem('data'))
   puzzleLS = JSON.parse(localStorage.getItem('puzzle'))
-  // console.log(data)
-  // console.log(puzzle);
-  // console.log(dataLS);
+  console.log(data)
+  console.log(puzzle);
+  console.log(dataLS);
 
   if (dataLS !== null && dataLS.A !== null && dataLS.A[0] !== null) {
     data = dataLS

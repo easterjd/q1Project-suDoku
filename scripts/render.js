@@ -11,9 +11,9 @@ const modal = document.querySelector('#myModal')
 const render = function (container) {
   dataLS = JSON.parse(localStorage.getItem('data'))
   puzzleLS = JSON.parse(localStorage.getItem('puzzle'))
-  // console.log(data)
-  // console.log(puzzle);
-  // console.log(dataLS);
+  console.log(data)
+  console.log(puzzle);
+  console.log(dataLS);
 
   if (dataLS !== null && dataLS.A !== null && dataLS.A[0] !== null) {
     data = dataLS
