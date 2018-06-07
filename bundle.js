@@ -124,6 +124,88 @@ const newEventListeners = function () {
     selected = event.target.parentNode
   }))
 
+  squares.forEach(element => element.addEventListener('click', function (event) {
+    const clickSquare = event.target
+    // const clickGroup = clickSquare.parentNode
+    const clickRow = clickSquare.classList[4]
+    const clickCol = clickSquare.classList[5]
+
+    for (let square of squares) {
+      if (square.style.borderColor = 'grey' && square !== clickSquare) {
+        square.style.borderColor = 'white'
+      }
+    }
+
+    squares.forEach(element => {
+      // let globalGroups = element.parentNode.classList[3]
+      let globalRow = element.classList[4]
+      let globalCol = element.classList[5]
+      // console.log(globalRow === clickRow)
+      if (globalRow === clickRow)  {
+        element.style.borderColor = 'grey'
+      }
+      if (globalCol === clickCol) {
+        element.style.borderColor = 'grey'
+      }
+      //Selecting groups is HARD:
+      if (colGroup1.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+      if (colGroup2.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+      if (colGroup3.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+    })
+
+    clickSquare.style.borderColor = '#69DD36'
+    selected = event.target
+  }))
+
+
   const render = require('./render')
 
   numButtons.forEach( element => element.addEventListener('click', (event) => {
@@ -135,10 +217,12 @@ const newEventListeners = function () {
     localStorage.setItem('data', JSON.stringify(dataLS))
     const selPara = selected.children
     selPara[0].textContent = event.target.textContent
+    render(grid)
   }))
 
   newButton.addEventListener('click', (event) => {
-    localStorage.clear('data')
+    localStorage.removeItem('data')
+    localStorage.removeItem('puzzle')
     setPuzzle(squares)
     render(grid)
   })
@@ -237,7 +321,7 @@ function setPuzzle (squares) {
   let chosen = chooser[Math.floor(Math.random() * 5)]
   puzzle = chosen.puzz.split('')
   solve = chosen.solve.split('')
-  localStorage.setItem('puzzle', JSON.stringify(puzzle))
+
   // for (let i = 0; i < squares.length; i++) {
   //   let square = squares[i]
   //   let para = square.children[0]
@@ -253,13 +337,14 @@ function setPuzzle (squares) {
   data.H = puzzle.slice(63, 72)
   data.I = puzzle.slice(72, 81)
   localStorage.setItem('data', JSON.stringify(data))
+  localStorage.setItem('puzzle', JSON.stringify({puzzle, solve}))
 }
 
 function resetPuzzle (squares) {
   const dataLS = JSON.parse(localStorage.getItem('data'))
   let comp = []
   if (puzzle.length === 0) {
-    puzzle = puzzleLS
+    puzzle = puzzleLS.puzzle
   }
   // for (let i = 0; i < squares.length; i++) {
   //   let square = squares[i]
@@ -290,22 +375,26 @@ let data = require('./data')
 let dataLS = JSON.parse(localStorage.getItem('data'))
 let puzzles = require('./puzzles')
 let puzzle = puzzles.puzzle
+let solve = puzzles.solve
 const events = require('./events')
 const newEventListeners = events.newEventListeners
 
 const render = function (container) {
   dataLS = JSON.parse(localStorage.getItem('data'))
-  console.log(data)
-  console.log(puzzle);
-  console.log(dataLS);
+  puzzleLS = JSON.parse(localStorage.getItem('puzzle'))
+  // console.log(data)
+  // console.log(puzzle);
+  // console.log(dataLS);
 
-  if (dataLS !== null) {
-    if (dataLS.A !== null) {
-      if (dataLS.A[0] !== null) {
-        data = dataLS
-      }
-    }
+  if (dataLS !== null && dataLS.A !== null && dataLS.A[0] !== null) {
+    data = dataLS
   }
+  // console.log(data);
+  // console.log(dataLS);
+  if (solve.length === 0) {
+    solve = puzzleLS.solve
+  }
+  // console.log(solve)
   container.innerHTML = ''
   let keys = Array.from(Object.keys(data))
   for (let p = 0; p < keys.length; p++) {
@@ -314,6 +403,7 @@ const render = function (container) {
     for (let i = 0; i < data[key].length; i++) {
       const value = data[key][i]
       const square = document.createElement('div')
+
       square.classList.add('square')
       square.classList.add('align-content-around')
       square.classList.add('text-center')
@@ -321,12 +411,28 @@ const render = function (container) {
       square.classList.add(key)
       square.classList.add(`col${i}`)
       const para = document.createElement('p')
-      para.textContent = value
+
+      if (value === '.') {
+        para.textContent = ''
+      } else {
+        para.textContent = value
+      }
+
       para.classList.add('m-0')
       square.appendChild(para)
       container.appendChild(square)
     }
   }
+  const innerNum = Array.from(document.querySelectorAll('.square p'))
+  innerNum.forEach( (element,index) => {
+    let number = element.textContent
+    if (number !== '') {
+      if (number !== puzzleLS.solve[index]) {
+        element.style.color = 'red'
+      }
+    }
+  })
+
   newEventListeners()
 }
 

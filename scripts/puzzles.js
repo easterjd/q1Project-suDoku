@@ -46,7 +46,7 @@ function setPuzzle (squares) {
   let chosen = chooser[Math.floor(Math.random() * 5)]
   puzzle = chosen.puzz.split('')
   solve = chosen.solve.split('')
-  localStorage.setItem('puzzle', JSON.stringify(puzzle))
+
   // for (let i = 0; i < squares.length; i++) {
   //   let square = squares[i]
   //   let para = square.children[0]
@@ -62,13 +62,14 @@ function setPuzzle (squares) {
   data.H = puzzle.slice(63, 72)
   data.I = puzzle.slice(72, 81)
   localStorage.setItem('data', JSON.stringify(data))
+  localStorage.setItem('puzzle', JSON.stringify({puzzle, solve}))
 }
 
 function resetPuzzle (squares) {
   const dataLS = JSON.parse(localStorage.getItem('data'))
   let comp = []
   if (puzzle.length === 0) {
-    puzzle = puzzleLS
+    puzzle = puzzleLS.puzzle
   }
   // for (let i = 0; i < squares.length; i++) {
   //   let square = squares[i]

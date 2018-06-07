@@ -106,6 +106,88 @@ const newEventListeners = function () {
     selected = event.target.parentNode
   }))
 
+  squares.forEach(element => element.addEventListener('click', function (event) {
+    const clickSquare = event.target
+    // const clickGroup = clickSquare.parentNode
+    const clickRow = clickSquare.classList[4]
+    const clickCol = clickSquare.classList[5]
+
+    for (let square of squares) {
+      if (square.style.borderColor = 'grey' && square !== clickSquare) {
+        square.style.borderColor = 'white'
+      }
+    }
+
+    squares.forEach(element => {
+      // let globalGroups = element.parentNode.classList[3]
+      let globalRow = element.classList[4]
+      let globalCol = element.classList[5]
+      // console.log(globalRow === clickRow)
+      if (globalRow === clickRow)  {
+        element.style.borderColor = 'grey'
+      }
+      if (globalCol === clickCol) {
+        element.style.borderColor = 'grey'
+      }
+      //Selecting groups is HARD:
+      if (colGroup1.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup1.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+      if (colGroup2.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup2.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+      if (colGroup3.includes(clickSquare)) {
+        if (rowGroupA.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupA.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupB.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupB.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+        if (rowGroupC.includes(clickSquare)) {
+          if (colGroup3.includes(element) && rowGroupC.includes(element)) {
+            element.style.borderColor = 'grey'
+          }
+        }
+      }
+    })
+
+    clickSquare.style.borderColor = '#69DD36'
+    selected = event.target
+  }))
+
+
   const render = require('./render')
 
   numButtons.forEach( element => element.addEventListener('click', (event) => {
@@ -117,10 +199,12 @@ const newEventListeners = function () {
     localStorage.setItem('data', JSON.stringify(dataLS))
     const selPara = selected.children
     selPara[0].textContent = event.target.textContent
+    render(grid)
   }))
 
   newButton.addEventListener('click', (event) => {
-    localStorage.clear('data')
+    localStorage.removeItem('data')
+    localStorage.removeItem('puzzle')
     setPuzzle(squares)
     render(grid)
   })
