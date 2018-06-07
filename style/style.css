@@ -31,7 +31,9 @@
 p {
   font-family: Roboto;
   color: pink;
-  font-size: 20px;
+  font-size: 25px;
+  padding-top: 5px;
+  margin-bottom: 5px;
 }
 
 #controlls {

@@ -15,7 +15,25 @@
 <body>
 
   <div class="container-fluid">
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row mt-5 mb-3">
       <div class="col-3">
 
@@ -24,9 +42,9 @@
         <button id="new" type="button" class="btn btn-secondary ml-3">New</button>
         <button id="restart" type="button" class="btn btn-secondary ml-3">Restart</button>
 
-        <button id="pause" type="button" class="btn btn-secondary ml-3">Pause</button>
+        <button type="button" class="btn btn-secondary ml-3 pause">Pause</button>
         <div class="timer px-5 ml-3">
-          <p class="text-center align-baseline">0:00</p>
+          <p id="timer" class="text-center align-baseline">00:00:00</p>
         </div>
       </div>
       <div class="col-3">

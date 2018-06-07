@@ -22,9 +22,3 @@ const newButton = document.querySelector('#new')
 const restartButton = document.querySelector('#restart')
 
 render(grid)
-
-
-
-
-
-module.exports = newEventListeners

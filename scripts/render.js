@@ -5,6 +5,8 @@ let puzzle = puzzles.puzzle
 let solve = puzzles.solve
 const events = require('./events')
 const newEventListeners = events.newEventListeners
+let currentState = []
+const modal = document.querySelector('#myModal')
 
 const render = function (container) {
   dataLS = JSON.parse(localStorage.getItem('data'))
@@ -18,6 +20,9 @@ const render = function (container) {
   }
   // console.log(data);
   // console.log(dataLS);
+  if (!puzzleLS) {
+    puzzleLS = {puzzle: [], solve: []}
+  }
   if (solve.length === 0) {
     solve = puzzleLS.solve
   }
@@ -50,15 +55,22 @@ const render = function (container) {
       container.appendChild(square)
     }
   }
+
+  currentState = []
   const innerNum = Array.from(document.querySelectorAll('.square p'))
   innerNum.forEach( (element,index) => {
     let number = element.textContent
+    currentState.push(number)
     if (number !== '') {
       if (number !== puzzleLS.solve[index]) {
         element.style.color = 'red'
       }
     }
   })
+
+  if (currentState.join('') === solve.join('')) {
+    modal.modal('toggle')
+  }
 
   newEventListeners()
 }
