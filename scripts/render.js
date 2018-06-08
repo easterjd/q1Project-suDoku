@@ -4,6 +4,7 @@ let puzzles = require('./puzzles')
 let puzzle = puzzles.puzzle
 let solve = puzzles.solve
 const events = require('./events')
+const modalAdd = events.modalAdd
 const newEventListeners = events.newEventListeners
 let currentState = []
 const modal = document.querySelector('#myModal')
@@ -69,7 +70,8 @@ const render = function (container) {
   })
 
   if (currentState.join('') === solve.join('')) {
-    modal.modal('toggle')
+    $('#myModal').modal('show')
+    modalAdd()
   }
 
   newEventListeners()

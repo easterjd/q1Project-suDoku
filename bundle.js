@@ -885,9 +885,29 @@ document.addEventListener('keypress', (event) => {
   }
 })
 
+let puzzles = require('./puzzles')
+let setPuzzle = puzzles.setPuzzle
+const squares = Array.from(document.querySelectorAll('.square'))
+
+
+const modalAdd = function () {
+  const next = document.querySelector('#next')
+  const render = require('./render')
+  next.addEventListener('click', (event) => {
+    localStorage.removeItem('data')
+    localStorage.removeItem('puzzle')
+    setPuzzle(squares)
+    render(grid)
+    timer.stop()
+    timer.start();
+    $('#myModal').modal('hide')
+  })
+}
+
 module.exports = {
   newEventListeners,
-  selected
+  selected,
+  modalAdd
 }
 
 },{"../node_modules/easytimer.js/dist/easytimer.min.js":1,"./data":3,"./puzzles":6,"./render":7}],5:[function(require,module,exports){
@@ -1020,6 +1040,7 @@ let puzzles = require('./puzzles')
 let puzzle = puzzles.puzzle
 let solve = puzzles.solve
 const events = require('./events')
+const modalAdd = events.modalAdd
 const newEventListeners = events.newEventListeners
 let currentState = []
 const modal = document.querySelector('#myModal')
@@ -1085,7 +1106,8 @@ const render = function (container) {
   })
 
   if (currentState.join('') === solve.join('')) {
-    modal.modal('toggle')
+    $('#myModal').modal('show')
+    modalAdd()
   }
 
   newEventListeners()

@@ -333,7 +333,27 @@ document.addEventListener('keypress', (event) => {
   }
 })
 
+let puzzles = require('./puzzles')
+let setPuzzle = puzzles.setPuzzle
+const squares = Array.from(document.querySelectorAll('.square'))
+
+
+const modalAdd = function () {
+  const next = document.querySelector('#next')
+  const render = require('./render')
+  next.addEventListener('click', (event) => {
+    localStorage.removeItem('data')
+    localStorage.removeItem('puzzle')
+    setPuzzle(squares)
+    render(grid)
+    timer.stop()
+    timer.start();
+    $('#myModal').modal('hide')
+  })
+}
+
 module.exports = {
   newEventListeners,
-  selected
+  selected,
+  modalAdd
 }
