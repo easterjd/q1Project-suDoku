@@ -40,7 +40,6 @@ const newEventListeners = function () {
 
   innerNum.forEach(element => element.addEventListener('click', function (event) {
     const clickSquare = event.target.parentNode
-    // const clickGroup = clickSquare.parentNode
     const clickRow = clickSquare.classList[4]
     const clickCol = clickSquare.classList[5]
 
@@ -51,10 +50,8 @@ const newEventListeners = function () {
     }
 
     squares.forEach(element => {
-      // let globalGroups = element.parentNode.classList[3]
       let globalRow = element.classList[4]
       let globalCol = element.classList[5]
-      // console.log(globalRow === clickRow)
       if (globalRow === clickRow)  {
         element.style.borderColor = 'grey'
       }
@@ -121,7 +118,6 @@ const newEventListeners = function () {
 
   squares.forEach(element => element.addEventListener('click', function (event) {
     const clickSquare = event.target
-    // const clickGroup = clickSquare.parentNode
     const clickRow = clickSquare.classList[4]
     const clickCol = clickSquare.classList[5]
 
@@ -132,10 +128,8 @@ const newEventListeners = function () {
     }
 
     squares.forEach(element => {
-      // let globalGroups = element.parentNode.classList[3]
       let globalRow = element.classList[4]
       let globalCol = element.classList[5]
-      // console.log(globalRow === clickRow)
       if (globalRow === clickRow)  {
         element.style.borderColor = 'grey'
       }
@@ -217,25 +211,6 @@ const newEventListeners = function () {
     render(grid)
   }))
 
-  // document.addEventListener('keypress', (event) => {
-  //   let key = event.which
-  //   console.log(key)
-  //   if (key < 49 || key > 57) {
-  //     alert('Oops! You must type a number between 1-9!')
-  //   } else if (key >= 49 || key <= 57) {
-  //     dataLS = JSON.parse(localStorage.getItem('data'))
-  //     const col = selected.classList[5]
-  //     const index = col[3]
-  //     const row = selected.classList[4]
-  //     dataLS[row][index] = String.fromCharCode(key)
-  //     localStorage.setItem('data', JSON.stringify(dataLS))
-  //     const selPara = selected.children
-  //     selPara[0].textContent = String.fromCharCode(key)
-  //
-  //     render(grid)
-  //   }
-  // })
-
   newButton.addEventListener('click', (event) => {
     localStorage.removeItem('data')
     localStorage.removeItem('puzzle')
@@ -243,8 +218,6 @@ const newEventListeners = function () {
     render(grid)
     timer.stop()
     timer.start();
-
-
   })
 
   restartButton.addEventListener('click', (event) => {
@@ -259,7 +232,6 @@ const newEventListeners = function () {
 
   if (!!startButton) {
     startButton.addEventListener('click', (event) => {
-      // let pauseText = pauseButton.textContent
       timer.start()
       render(grid)
     })
@@ -288,14 +260,10 @@ const newEventListeners = function () {
     })
   } else {
     startButton.addEventListener('click', (event) => {
-      // let pauseText = pauseButton.textContent
       timer.start()
       render(grid)
     })
   }
-
-
-
 
   timer.addEventListener('secondsUpdated', function (e) {
     $('#timer').html(timer.getTimeValues().toString());
@@ -316,7 +284,6 @@ const newEventListeners = function () {
 document.addEventListener('keypress', (event) => {
   const render = require('./render')
   let key = event.which
-  console.log(key)
   if (key < 49 || key > 57) {
     alert('Oops! You must type a number between 1-9!')
   } else if (key >= 49 || key <= 57) {

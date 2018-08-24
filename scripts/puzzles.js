@@ -47,11 +47,6 @@ function setPuzzle (squares) {
   puzzle = chosen.puzz.split('')
   solve = chosen.solve.split('')
 
-  // for (let i = 0; i < squares.length; i++) {
-  //   let square = squares[i]
-  //   let para = square.children[0]
-  //   para.textContent = puzzle[i]
-  // }
   data.A = puzzle.slice(0, 9)
   data.B = puzzle.slice(9, 18)
   data.C = puzzle.slice(18, 27)
@@ -71,11 +66,6 @@ function resetPuzzle (squares) {
   if (puzzle.length === 0) {
     puzzle = puzzleLS.puzzle
   }
-  // for (let i = 0; i < squares.length; i++) {
-  //   let square = squares[i]
-  //   let para = square.children[0]
-  //   para.textContent = puzzle[i]
-  // }
   data.A = puzzle.slice(0, 9)
   data.B = puzzle.slice(9, 18)
   data.C = puzzle.slice(18, 27)

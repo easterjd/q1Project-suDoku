@@ -12,22 +12,16 @@ const modal = document.querySelector('#myModal')
 const render = function (container) {
   dataLS = JSON.parse(localStorage.getItem('data'))
   puzzleLS = JSON.parse(localStorage.getItem('puzzle'))
-  console.log(data)
-  console.log(puzzle);
-  console.log(dataLS);
 
   if (dataLS !== null && dataLS.A !== null && dataLS.A[0] !== null) {
     data = dataLS
   }
-  // console.log(data);
-  // console.log(dataLS);
   if (!puzzleLS) {
     puzzleLS = {puzzle: [], solve: []}
   }
   if (solve.length === 0) {
     solve = puzzleLS.solve
   }
-  // console.log(solve)
   container.innerHTML = ''
   let keys = Array.from(Object.keys(data))
   for (let p = 0; p < keys.length; p++) {
